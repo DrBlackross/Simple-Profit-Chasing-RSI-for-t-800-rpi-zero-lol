@@ -465,12 +465,13 @@ Potential next upgrades for this project:
 - Add backtesting and historical performance reports
 - Add alerting for failed API calls, unfilled orders, and stop-loss actions
 
+If it works, great drop me some DOGE DNgPXztNRmj5qp5jdPP2ZKm1r4u6eQmaZJ
+
 ## Disclaimer
 
 This repository is provided for educational and experimental purposes only. It does not provide investment, trading, legal, or tax advice. Use of this code and any resulting trades is entirely your responsibility.
 
 ## License
 
-Choose a license before publishing.
+GNU GPL v3.0
 
-A common choice for open-source Python projects is the MIT License. If you use it, add a file named `LICENSE` to the repository containing the MIT License text.
