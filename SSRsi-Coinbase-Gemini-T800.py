@@ -1,3 +1,4 @@
+# SSRsi-Coinbase-Gemini-T800.py
 from collections import deque
 from datetime import datetime, timedelta
 import functools
