@@ -443,7 +443,7 @@ You should commit `.env.example`, but **never** commit your actual `.env` file.
 - Cryptocurrency prices can move rapidly and unpredictably.
 - You are responsible for testing, monitoring, exchange compliance, taxes, risk controls, and all trading decisions.
 
-## Suggested Improvements
+## Wishful Thinking
 
 Potential next upgrades for this project:
 
