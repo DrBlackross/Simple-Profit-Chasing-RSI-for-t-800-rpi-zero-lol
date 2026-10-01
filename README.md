@@ -1,6 +1,6 @@
 # T-800 RSI Crypto Trading Bots
 
-Python-based RSI cryptocurrency trading bots for **Kraken** and **Coinbase**, with paper-trading support, optional live trading, Flask dashboards, Discord notifications, retry handling, order timeouts, and optional WS2812 “T-800 eye” LED status indicators.
+Python-based RSI cryptocurrency trading bots for **Kraken** and **Coinbase**, with paper-trading support, optional live trading, Flask dashboards, Discord notifications, retry handling, order timeouts, and optional WS2812 “T-800 eye” LED status indicators. (why not its Oct 1st)
 
 > ⚠️ **Warning:** This project is experimental software, not financial advice. Cryptocurrency trading is high risk. Run paper trading first, review every configuration value, and never use API keys with withdrawal permissions.
 
