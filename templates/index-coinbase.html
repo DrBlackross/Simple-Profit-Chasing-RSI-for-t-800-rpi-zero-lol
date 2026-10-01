@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>RSI Trading Bot Dashboard (Kraken)</title>
+    <title>RSI Trading Bot Dashboard (Coinbase - DOGE/USDC)</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
@@ -34,7 +34,7 @@
         }
 
         .badge {
-            background: #5841d8;
+            background: #0052ff;
             color: white;
             padding: 4px 10px;
             border-radius: 12px;
@@ -120,7 +120,7 @@
         }
 
         button {
-            background: #5841d8;
+            background: #0052ff;
             color: white;
             border: none;
             padding: 8px 16px;
@@ -130,7 +130,7 @@
         }
 
         button:hover {
-            background: #4732b2;
+            background: #0040cc;
         }
 
         .btn-danger {
@@ -153,7 +153,7 @@
         }
 
         .timeout-btns button.active {
-            background: #5841d8;
+            background: #0052ff;
         }
 
         .chart-container {
@@ -168,7 +168,7 @@
 <body>
     <div class="header-bar">
         <div class="header-title">
-            <span>RSI Trading Dashboard (Kraken)</span>
+            <span>RSI Trading Dashboard (Coinbase)</span>
             <span class="badge">{{ base_symbol }}/{{ quote_symbol }}</span>
         </div>
         <div class="status-indicator">
@@ -193,40 +193,37 @@
             <div class="metrics-grid" style="margin-bottom: 15px;">
                 <div class="metric-card">
                     <div class="metric-label">{{ quote_symbol }} Balance</div>
-                    <div class="metric-value" id="quote-bal">{{ "%.2f"|format(last_quote_balance) }}</div>
+                    <div class="metric-value" id="quote-bal">${{ "%.2f"|format(last_quote_balance) }}</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">{{ base_symbol }} Balance</div>
-                    <div class="metric-value" id="crypto-bal">{{ "%.8f"|format(last_crypto_balance) }}</div>
+                    <div class="metric-value" id="crypto-bal">{{ "%.4f"|format(last_crypto_balance) }}</div>
                 </div>
             </div>
             <div class="metrics-grid" style="margin-bottom: 15px;">
                 <div class="metric-card">
                     <div class="metric-label">PNL ({{ quote_symbol }})</div>
                     <div class="metric-value {{ 'positive' if pnl_quote >= 0 else 'negative' }}" id="pnl-val">
-                        {{ "%.2f"|format(pnl_quote) }} ({{ "%.2f"|format(pnl_percent) }}%)
+                        ${{ "%.2f"|format(pnl_quote) }} ({{ "%.2f"|format(pnl_percent) }}%)
                     </div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-label">Total Fees Paid</div>
-                    <div class="metric-value">{{ "%.2f"|format(total_fees) }}</div>
+                    <div class="metric-value">{{ "%.4f"|format(total_fees) }} {{ quote_symbol }}</div>
                 </div>
             </div>
-            <div class="metrics-grid" style="margin-bottom: 15px;">
-                <div class="metric-card">
-                    <div class="metric-label">Profit Target</div>
-                    <div class="metric-value">{{ "%.2f"|format(profit_percentage) }}%</div>
-                </div>
-                <div class="metric-card">
-                    <div class="metric-label">Maker / Taker Fees</div>
-                    <div class="metric-value" style="font-size: 16px;">{{ "%.2f"|format(maker_fee) }}% / {{
-                        "%.2f"|format(taker_fee) }}%</div>
-                </div>
+            <div class="metric-card" style="margin-bottom: 15px;">
+                <div class="metric-label">Maker / Taker Fees</div>
+                <div class="metric-value" style="font-size: 16px;">{{ "%.2f"|format(maker_fee) }}% / {{
+                    "%.2f"|format(taker_fee) }}%</div>
             </div>
-
-            <div class="metric-card">
+            <div class="metric-card" style="margin-bottom: 15px;">
                 <div class="metric-label">Order Timeout</div>
                 <div class="metric-value" style="font-size: 16px;">{{ order_timeout_minutes }} minutes</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-label">Profit Target</div>
+                <div class="metric-value" style="font-size: 16px;">{{ "%.2f"|format(profit_percentage) }}%</div>
             </div>
         </div>
     </div>
@@ -246,7 +243,7 @@
                 <tr>
                     <td>{{ trade.time }}</td>
                     <td class="{{ trade.class }}">{{ trade.type }}</td>
-                    <td>{{ trade.price }}</td>
+                    <td>${{ trade.price }}</td>
                 </tr>
                 {% else %}
                 <tr>
@@ -287,7 +284,7 @@
             data: {
                 labels: timestamps,
                 datasets: [{
-                    label: 'Price ({{ quote_symbol }})',
+                    label: 'Price',
                     data: prices,
                     borderColor: '#00b894',
                     backgroundColor: 'rgba(0, 184, 148, 0.1)',
@@ -346,10 +343,10 @@
                 .then(res => res.json())
                 .then(data => {
                     if (data.status === 'success') {
-                        document.getElementById('quote-bal').innerText = data.last_quote_balance;
+                        document.getElementById('quote-bal').innerText = '$' + data.last_quote_balance;
                         document.getElementById('crypto-bal').innerText = data.last_crypto_balance;
                         const pnlEl = document.getElementById('pnl-val');
-                        pnlEl.innerText = data.pnl_quote + ' (' + data.pnl_percent + '%)';
+                        pnlEl.innerText = '$' + data.pnl_quote + ' (' + data.pnl_percent + '%)';
                         pnlEl.className = 'metric-value ' + (parseFloat(data.pnl_quote) >= 0 ? 'positive' : 'negative');
                     }
                 });
