@@ -203,9 +203,6 @@ DISCORD_WEBHOOK_URL=
 KRAKEN_API_KEY=
 KRAKEN_API_SECRET=
 
-# Kraken market override.
-TRADING_PAIR=BTC/USDC
-
 # Coinbase credentials — required only for Coinbase live trading.
 COINBASE_API_KEY=
 COINBASE_API_SECRET=
